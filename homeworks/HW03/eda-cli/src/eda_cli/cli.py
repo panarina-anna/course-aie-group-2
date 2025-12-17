@@ -160,6 +160,21 @@ def report(
         f.write(f"- **Слишком много пропусков (>50%):** {quality_flags['too_many_missing']}\n")
         
         # Новые эвристики
+        f.write(f"- **Используемый порог пропусков:** {quality_flags['cli_min_missing_threshold']}\n")
+
+        f.write(f"- **Колонок с пропусками > порога:** {quality_flags['n_problematic_by_threshold']}\n")
+        if quality_flags['n_problematic_by_threshold'] > 0:
+            f.write("  - Список:\n")
+            for col, share in quality_flags['problematic_cols_by_threshold']:
+                f.write(f"    - `{col}`: {share:.1%}\n")
+
+        f.write(f"- **Количество константных колонок:** {quality_flags['n_constant_columns']}\n")
+
+        f.write(f"- **Порог для нулевых значений:** {quality_flags['cli_zero_threshold']:.1%}\n")
+
+        if 'zero_check_skipped' in quality_flags:
+            f.write(f"- **Статус проверки нулей:** {quality_flags['zero_check_skipped']}\n")
+
         f.write(f"- **Есть константные колонки:** {quality_flags['has_constant_columns']}\n")
         if quality_flags['has_constant_columns']:
             const_cols = quality_flags.get('constant_columns', [])

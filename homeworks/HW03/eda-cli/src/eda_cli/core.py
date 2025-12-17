@@ -192,6 +192,14 @@ def compute_quality_flags(summary: DatasetSummary,
     flags["too_many_missing"] = max_missing_share > 0.5
 
     flags["cli_min_missing_threshold"] = min_missing_threshold
+    
+    problematic_by_threshold = []
+    for idx, row in missing_df.iterrows():
+        if row['missing_share'] > min_missing_threshold:
+            problematic_by_threshold.append((idx, row['missing_share']))
+    flags["problematic_cols_by_threshold"] = problematic_by_threshold
+    flags["n_problematic_by_threshold"] = len(problematic_by_threshold)
+
     flags["cli_high_cardinality_pct"] = high_cardinality_pct
     flags["cli_zero_threshold"] = zero_threshold
 
@@ -268,7 +276,7 @@ def compute_quality_flags(summary: DatasetSummary,
         score -= 0.1
         
     if flags["has_constant_columns"]:
-        score -= 0.1 * len(constant_columns)  
+        score -= 0.1 * flags["n_constant_columns"]  
 
     if flags["has_high_cardinality_categoricals"]:
         score -= 0.05 * len(high_cardinality_cols)  
