@@ -7,18 +7,18 @@
 - Какой датасет выбран: `S06-hw-dataset-01.csv`
 - Размер: (12000, 30)
 - Целевая переменная: `target` (класс 0 - доля: 0.676583, класс 1 - доля: 0.323417)
-- Признаки: 24 числовых непрерывных признака (num01–num24);
-            3 категориально-подобных признака (cat_contract, cat_region, cat_payment);
-            1 числовой признак tenure_months (121 уникальное значение);
-            Столбец id исключен из обучения.
+- Признаки: 24 числовых непрерывных признака (num01–num24),
+            3 категориально-подобных признака (cat_contract, cat_region, cat_payment),
+            1 числовой признак tenure_months (121 уникальное значение),
+            cтолбец id исключен из обучения.
 .
 ## 2. Protocol
 
 - Разбиение: train/test (75%/25% (9000/3000), `random_state` = 42, стратификация: по целевой переменной target)
 - Подбор: CV на train (использован StratifiedKFold с 5 фолдами на train, оптимизация по ROC-AUC (scoring="roc_auc"))
-- Метрики: Accuracy: общая доля правильных предсказаний
-           F1-score: гармоническое среднее precision и recall (важно при дисбалансе классов)
-           ROC-AUC: площадь под ROC-кривой, оценивает способность модели разделять классы (при дисбалансе)
+- Метрики: Accuracy: общая доля правильных предсказаний,
+           F1-score: гармоническое среднее precision и recall (важно при дисбалансе классов),
+           ROC-AUC: площадь под ROC-кривой, оценивает способность модели разделять классы (при дисбалансе).
 
 ## 3. Models
 
@@ -32,37 +32,42 @@
 
 1. DecisionTreeClassifier:
 
-max_depth: [None, 1-10]
+- max_depth: [None, 1-10]
 
-min_samples_leaf: [1, 5, 10, 15, 20, 25, 30, 35]
+- min_samples_leaf: [1, 5, 10, 15, 20, 25, 30, 35]
 
-ccp_alpha: [0.0, 0.00001, 0.001, 0.002, 0.005, 0.01]
+- ccp_alpha: [0.0, 0.00001, 0.001, 0.002, 0.005, 0.01]
+
 
 2. RandomForestClassifier (300 деревьев):
 
-max_features: ["sqrt", 0.3, 0.5]
+- max_features: ["sqrt", 0.3, 0.5]
 
-min_samples_leaf: [1, 5, 10]
+- min_samples_leaf: [1, 5, 10]
 
-max_depth: [None, 3, 5, 10, 20, 25]
+- max_depth: [None, 3, 5, 10, 20, 25]
 
-4. HistGradientBoostingClassifier:
 
-learning_rate: [0.01, 0.03, 0.05, 0.1, 0.15]
 
-max_depth: [None, 1, 2, 3]
+3. HistGradientBoostingClassifier:
 
-max_leaf_nodes: [10, 15, 30, 40, 60, 75, 80]
+- learning_rate: [0.01, 0.03, 0.05, 0.1, 0.15]
+
+- max_depth: [None, 1, 2, 3]
+
+- max_leaf_nodes: [10, 15, 30, 40, 60, 75, 80]
+
+
 
 Опционально:
 
 1. StackingClassifier:
 
-Базовые модели: лучшие версии LR, DT, RF, HGB
+- Базовые модели: лучшие версии LR, DT, RF, HGB
 
-Мета-модель: LogisticRegression
+- Мета-модель: LogisticRegression
 
-CV = 5
+- CV = 5
 
 ## 4. Results
 
