@@ -1,0 +1,14 @@
+{
+    "dataset": "EMNIST",
+    "seed": 42,
+    "model": "MLP",
+    "hidden_dims": [
+        256,
+        128
+    ],
+    "dropout_p": 0.3,
+    "use_batchnorm": false,
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "best_val_accuracy": 0.8314795197740112
+}
