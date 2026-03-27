@@ -1,0 +1,5 @@
+experiment_id,task,dataset,seed,split_summary,window_size,horizon,model_summary,features_summary,scaler,optimizer,lr,epochs_trained,best_val_mae,best_val_rmse,best_val_mape,test_mae,test_rmse,test_mape,notes
+B1,forecasting,S12-hw-dataset,42,60-20-20 temporal split,,1,B1,none,,,,,24.38039285714285,28.67770954732878,15.896828732372967,32.44159523809523,36.36421407425293,20.02350341721837,
+B2,forecasting,S12-hw-dataset,42,60-20-20 temporal split,,1,B2,none,,,,,14.874362103174601,18.16520657263189,10.860827179292212,15.397679563492067,18.50862579084884,9.820660888855395,
+B3,forecasting,S12-hw-dataset,42,60-20-20 temporal split,,1,B3,"lag_1,lag_2,lag_3,lag_7,lag_14,lag_24,rolling_mean_7,rolling_std_7,rolling_mean_24,calendar",StandardScaler,,,,5.0103824878217225,6.359334984981777,3.4499453680754506,5.581722664394863,6.913512132466344,3.580916499919773,
+R1,forecasting,S12-hw-dataset,42,60-20-20 temporal split,24,1,R1,sequential,StandardScaler,Adam,0.001,100,6.15599250793457,7.84507709842139,4.206457138061523,9.251764297485352,11.438402484245847,5.841710090637207,Best on validation

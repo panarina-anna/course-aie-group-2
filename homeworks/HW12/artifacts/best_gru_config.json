@@ -1,0 +1,22 @@
+{
+  "model_type": "GRU",
+  "input_size": 1,
+  "hidden_size": 64,
+  "num_layers": 2,
+  "output_size": 1,
+  "dropout": 0.2,
+  "window_size": 24,
+  "batch_size": 32,
+  "learning_rate": 0.001,
+  "optimizer": "Adam",
+  "loss_function": "MSELoss",
+  "seed": 42,
+  "best_val_mae": 5.881491184234619,
+  "best_val_rmse": 7.376572004981564,
+  "best_val_mape": 4.077619552612305,
+  "test_mae": 9.251764297485352,
+  "test_rmse": 11.438402484245847,
+  "test_mape": 5.841710090637207,
+  "num_epochs_trained": 100,
+  "device": "cpu"
+}
