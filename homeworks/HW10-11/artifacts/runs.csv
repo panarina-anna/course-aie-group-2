@@ -1,0 +1,7 @@
+experiment_id,task,dataset,seed,model_summary,optimizer,lr,epochs_trained,best_val_accuracy,test_accuracy,precision,recall,mean_iou,notes
+C1,classification,STL10,42,SimpleCNN (4 conv layers),Adam,0.001,20,54.9,55.8,,,,Simple CNN without augmentations
+C2,classification,STL10,42,SimpleCNN (4 conv layers),Adam,0.001,20,42.3,42.8875,,,,"Simple CNN with augmentations (flip, rotation, color jitter)"
+C3,classification,STL10,42,ResNet18 (head only),Adam,0.001,20,94.6,94.75,,,,"ResNet18 with frozen backbone, only FC layer trained"
+C4,classification,STL10,42,ResNet18 (partial fine-tune),Adam,0.0001,20,95.4,95.5875,,,,ResNet18 with layer4 and FC unfrozen
+V1,detection,PascalVOC2012,42,FasterRCNN_ResNet50_FPN,,,,,,0.39288570579747045,0.9675,0.8216999503093794,score_threshold=0.3 (liberal)
+V2,detection,PascalVOC2012,42,FasterRCNN_ResNet50_FPN,,,,,,0.670554945054945,0.8273095238095237,0.7902576453669914,score_threshold=0.7 (strict)

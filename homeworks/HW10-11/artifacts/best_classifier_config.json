@@ -1,0 +1,9 @@
+{
+  "dataset": "STL10",
+  "architecture": "ResNet18",
+  "experiment": "C4",
+  "num_classes": 10,
+  "seed": 42,
+  "best_val_accuracy": 95.4,
+  "test_accuracy": 95.5875
+}
